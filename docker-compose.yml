@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    container_name: tunis_by_night_app
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}  # <--- CRUCIAL: Maps your key
+      - JWT_SECRET_KEY=tunis_night_secret_2026
+    stdin_open: true
+    tty: true
